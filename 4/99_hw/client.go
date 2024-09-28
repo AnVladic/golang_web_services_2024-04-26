@@ -83,7 +83,6 @@ func (srv *SearchClient) FindUsers(req SearchRequest) (*SearchResponse, error) {
 
 	searcherReq, err := http.NewRequest("GET", srv.URL+"?"+searcherParams.Encode(), nil)
 	searcherReq.Header.Add("AccessToken", srv.AccessToken)
-
 	resp, err := client.Do(searcherReq)
 	if err != nil {
 		if err, ok := err.(net.Error); ok && err.Timeout() {
@@ -106,7 +105,7 @@ func (srv *SearchClient) FindUsers(req SearchRequest) (*SearchResponse, error) {
 			return nil, fmt.Errorf("cant unpack error json: %s", err)
 		}
 		if errResp.Error == "ErrorBadOrderField" {
-			return nil, fmt.Errorf("OrderFeld %s invalid", req.OrderField)
+			return nil, fmt.Errorf("OrderField %s invalid", req.OrderField)
 		}
 		return nil, fmt.Errorf("unknown bad request error: %s", errResp.Error)
 	}
@@ -122,7 +121,7 @@ func (srv *SearchClient) FindUsers(req SearchRequest) (*SearchResponse, error) {
 		result.NextPage = true
 		result.Users = data[0 : len(data)-1]
 	} else {
-		result.Users = data[0:len(data)]
+		result.Users = data
 	}
 
 	return &result, err
