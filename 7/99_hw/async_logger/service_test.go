@@ -320,6 +320,7 @@ func TestStat(t *testing.T) {
 	go func() {
 		for {
 			stat, err := statStream1.Recv()
+			println(stat)
 			if err != nil && err != io.EOF {
 				// fmt.Printf("unexpected error %v\n", err)
 				return
