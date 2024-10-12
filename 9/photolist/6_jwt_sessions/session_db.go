@@ -81,7 +81,7 @@ func (sm *SessionsDB) DestroyAll(w http.ResponseWriter, user *User) error {
 	}
 
 	affected, _ := result.RowsAffected()
-	log.Println("destroyed sessions", affected, "for user", user.ID)
+	log.Println("destroyed sessions", affected, "for fast_user", user.ID)
 
 	return nil
 }

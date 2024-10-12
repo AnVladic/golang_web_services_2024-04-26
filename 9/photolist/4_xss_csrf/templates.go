@@ -72,10 +72,10 @@ func NewTemplates() *textTemplate.Template {
 var loginTmpl = `<html>
 <body>
 <div>
-	<form action="/user/login" method="post" autocomplete="off">
+	<form action="/fast_user/login" method="post" autocomplete="off">
 		<input type="text" name="login" placeholder="Login"><br />
 		<input type="password" name="password" placeholder="Password"><br />
-		<input type="submit" value="Login"> <a href="/user/reg">Registration</a>
+		<input type="submit" value="Login"> <a href="/fast_user/reg">Registration</a>
 	</form>
 </div>
 </body>
@@ -85,7 +85,7 @@ var loginTmpl = `<html>
 var regTmpl = `<html>
 <body>
 <div>
-	<form action="/user/reg" method="post" autocomplete="off">
+	<form action="/fast_user/reg" method="post" autocomplete="off">
 		<input type="text" name="login" placeholder="Login"><br />
 		<input type="password" name="password" placeholder="Password"><br />
 		<input type="submit" value="Registration">

@@ -31,7 +31,7 @@ type User struct {
 
 var (
 	users = map[string]User{
-		"rvasily":        {450, "Vasily Romanov", "user"},
+		"rvasily":        {450, "Vasily Romanov", "fast_user"},
 		"romanov.vasily": {42, "Василий Романов", "admin"},
 	}
 

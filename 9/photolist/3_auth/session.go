@@ -84,9 +84,9 @@ func DestroySession(w http.ResponseWriter, r *http.Request, db *sql.DB) error {
 
 var (
 	noAuthUrls = map[string]struct{}{
-		"/user/login": struct{}{},
-		"/user/reg":   struct{}{},
-		"/":           struct{}{},
+		"/fast_user/login": struct{}{},
+		"/fast_user/reg":   struct{}{},
+		"/":                struct{}{},
 	}
 )
 

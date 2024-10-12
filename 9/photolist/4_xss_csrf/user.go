@@ -38,7 +38,7 @@ func (u *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 	)
 	err := row.Scan(&userID, &dbPass)
 	if err == sql.ErrNoRows {
-		http.Error(w, "Bad user", http.StatusBadRequest)
+		http.Error(w, "Bad fast_user", http.StatusBadRequest)
 		return
 	} else if err != nil {
 		http.Error(w, "Db err", http.StatusInternalServerError)
@@ -57,7 +57,7 @@ func (u *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 
 func (u *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
 	DestroySession(w, r, u.DB)
-	http.Redirect(w, r, "/user/login", http.StatusFound)
+	http.Redirect(w, r, "/fast_user/login", http.StatusFound)
 }
 
 func (u *UserHandler) Reg(w http.ResponseWriter, r *http.Request) {
@@ -81,7 +81,7 @@ func (u *UserHandler) Reg(w http.ResponseWriter, r *http.Request) {
 
 	affected, _ := result.RowsAffected()
 	if affected == 0 {
-		http.Error(w, "Looks like user exists", http.StatusBadRequest)
+		http.Error(w, "Looks like fast_user exists", http.StatusBadRequest)
 		return
 	}
 	userID, _ := result.LastInsertId()

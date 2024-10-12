@@ -44,8 +44,9 @@ func (sm *SessionsJWTVer) Check(r *http.Request) (*Session, error) {
 	}
 
 	payload := &SessionJWTVerClaims{}
-	_, err = jwt.ParseWithClaims(sessionCookie.Value, payload, sm.parseSecretGetter)
 	if err != nil {
+		_, err = jwt.ParseWithClaims(sessionCookie.Value, payload, sm.parseSecretGetter)
+
 		return nil, fmt.Errorf("cant parse jwt token: %v", err)
 	}
 	// проверка exp, iat
@@ -65,7 +66,7 @@ func (sm *SessionsJWTVer) Check(r *http.Request) (*Session, error) {
 	}
 
 	if payload.Ver != ver {
-		log.Println("CheckSession invalid version, sess", payload.Ver, "user", ver)
+		log.Println("CheckSession invalid version, sess", payload.Ver, "fast_user", ver)
 		return nil, ErrNoAuth
 	}
 

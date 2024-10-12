@@ -31,8 +31,8 @@ func (uh *UserHandler) hashPass(plainPassword, salt string) []byte {
 }
 
 var (
-	errNoRec   = errors.New("No user record found")
-	errBadPass = errors.New("No user record found")
+	errNoRec   = errors.New("No fast_user record found")
+	errBadPass = errors.New("No fast_user record found")
 )
 
 func (uh *UserHandler) passwordIsValid(pass string, row *sql.Row) (*User, error) {
@@ -80,7 +80,7 @@ func (uh *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 	case nil:
 		// all is ok
 	case errNoRec:
-		http.Error(w, "No user", http.StatusBadRequest)
+		http.Error(w, "No fast_user", http.StatusBadRequest)
 	case errBadPass:
 		http.Error(w, "Bad pass", http.StatusBadRequest)
 	default:
@@ -112,7 +112,7 @@ func (uh *UserHandler) Reg(w http.ResponseWriter, r *http.Request) {
 
 	affected, _ := result.RowsAffected()
 	if affected == 0 {
-		http.Error(w, "Looks like user exists", http.StatusBadRequest)
+		http.Error(w, "Looks like fast_user exists", http.StatusBadRequest)
 		return
 	}
 	userID, _ := result.LastInsertId()
@@ -128,7 +128,7 @@ func (uh *UserHandler) Reg(w http.ResponseWriter, r *http.Request) {
 
 func (uh *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
 	uh.Sessions.DestroyCurrent(w, r)
-	http.Redirect(w, r, "/user/login", http.StatusFound)
+	http.Redirect(w, r, "/fast_user/login", http.StatusFound)
 }
 
 func (uh *UserHandler) ChangePassword(w http.ResponseWriter, r *http.Request) {
