@@ -389,7 +389,5 @@ assignee: я
 			t.Fatalf("%s bad results:\n\tWant: %v\n\tHave: %v", caseName, item.answers, tds.Answers)
 		}
 		tds.Unlock()
-
 	}
-
 }
