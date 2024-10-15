@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"hw11_shopql/cmd"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
@@ -60,7 +61,7 @@ func TestApp(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 
 	var (
-		app = GetApp()
+		app = cmd.GetApp()
 		ts  = httptest.NewServer(app)
 
 		gqlURL = "/query"
@@ -909,8 +910,8 @@ func TestApp(t *testing.T) {
 
 			diff, equal := messagediff.PrettyDiff(item.Expected, got)
 			if !equal {
-				dd(item.Expected, got)
-				t.Fatalf("\033[1;31mresults not match\033[0m\n\033[1;35mbody\033[0m: %s\n\033[1;32mwant\033[0m %#v\n\033[1;34mgot\033[0m %#v\n\033[1;33mdiff\033[0m:\n%s", respBody, item.Expected, got, diff)
+				//dd(item.Expected, got)
+				t.Fatalf("\033[1;31mresults not match\033[0m\n\033[1;35mbody\033[0m: %s\n\033[1;32mwant\033[0m %#v\n\033[1;34mgot \033[0m %#v\n\033[1;33mdiff\033[0m:\n%s", respBody, item.Expected, got, diff)
 			}
 
 			if item.After != nil {

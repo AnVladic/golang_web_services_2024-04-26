@@ -17,6 +17,6 @@ type Photo struct {
 }
 
 func (ph *Photo) Id() string {
-	log.Println("call Photo.Id method", ph.ID)
+	log.Println("call Photo.ID method", ph.ID)
 	return strconv.Itoa(int(ph.ID))
 }
